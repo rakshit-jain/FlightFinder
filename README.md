@@ -22,3 +22,6 @@ Find Fastest Flights from the given set
 1. Hit the endpoint after starting the project 
  ```http://localhost:9090/flights/fastest?from=IXC&to=COK```
 
+## Callouts
+1. I have observed the time format in ivtest-sched.csv is not given as per HHMM format. As per the example given in problem statement the corrupted data is also considered in result hence data in CSV file is cleaned to match HHMM format
+

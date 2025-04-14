@@ -20,6 +20,8 @@ dependencies {
     implementation 'org.apache.httpcomponents.client5:httpclient5-fluent:5.2'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
     implementation 'org.json:json:20231013'
+    compileOnly 'org.projectlombok:lombok:1.18.38'
+    annotationProcessor 'org.projectlombok:lombok:1.18.38'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
