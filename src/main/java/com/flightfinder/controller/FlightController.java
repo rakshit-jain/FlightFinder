@@ -24,9 +24,18 @@ class FlightController {
     public ResponseEntity<List<Map<String, Map<String, Integer>>>> findFastestFlights(
             @RequestParam String from,
             @RequestParam String to,
-            @RequestParam(required = false, defaultValue = "5") String size){
-        List<Map<String, Map<String, Integer>>> fastestFlights = flightService.findFastestFlights(from, to);
-        int sizeInt = Integer.parseInt(size);
-        return ResponseEntity.ok(fastestFlights.size() > sizeInt ?fastestFlights.subList(0, sizeInt) : fastestFlights);
+            @RequestParam(required = false, defaultValue = "5") int size){
+        //Assuming authentication and authorization are handled by Spring Security
+        if(validateAirportCode(from) && validateAirportCode(to)){
+            List<Map<String, Map<String, Integer>>> fastestFlights = flightService.findFastestFlights(from, to);
+            return ResponseEntity.ok(fastestFlights.size() > size ?fastestFlights.subList(0, size) : fastestFlights);
+        }
+        return ResponseEntity.badRequest().body(null);
+    }
+
+    public boolean validateAirportCode(String airportCode) {
+        // Implement your validation logic here
+        // For example, check if the airport code is in a predefined list of valid codes
+        return true; // Placeholder for actual validation logic
     }
 }
