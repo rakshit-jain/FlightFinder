@@ -1,6 +1,8 @@
 package com.flightfinder.utils;
 
 import com.flightfinder.model.Flight;
+import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,6 +11,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 public class FileUtils {
 
     private FileUtils() {
@@ -31,11 +34,11 @@ public class FileUtils {
                         LocalTime endTime = TimeUtils.parseTimeInHHmmFormat(parts[4].trim());
                         flights.add(new Flight(flightNo, fromAirport, toAirport, startTime, endTime));
                     } catch (Exception e) {
-                        System.err.println("Error parsing line: " + line + " - " + e.getMessage());
+                        log.error("Error parsing flight data: " + line, e);
                         // Handle the error appropriately: log, throw exception, or continue.
                     }
                 } else {
-                    System.err.println("Skipping invalid line: " + line); // Handle invalid lines
+                    log.error("Invalid line format: " + line);// Handle invalid lines
                 }
             }
         }
